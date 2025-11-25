@@ -1,10 +1,12 @@
 package com.ahmed.service;
 
+import java.util.List;
+
 import com.ahmed.entity.Order;
 
 public interface OrderService {
 
-	public Order saveOrUpdate(Order order);
+	public Iterable<Order> saveAll(List<Order> orders);
 
 	public Order getOrder(Long orderId);
 

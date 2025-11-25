@@ -1,5 +1,6 @@
 package com.ahmed.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class OrderService_impl implements OrderService {
 	OrderRepository ordeRepository;
 
 	@Override
-	public Order saveOrUpdate(Order order) {
-		return ordeRepository.save(order);
+	public Iterable<Order> saveAll(List<Order> orders) {
+	    return ordeRepository.saveAll(orders);
 	}
 
 	@Override
@@ -40,5 +41,7 @@ public class OrderService_impl implements OrderService {
 		ordeRepository.deleteById(orderId);
 
 	}
+
+	
 
 }

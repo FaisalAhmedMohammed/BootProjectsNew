@@ -1,6 +1,7 @@
 package com.ahmed.runner;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -20,10 +21,20 @@ public class MyAppRunner implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		Order ord = new Order(19001L, 101L, LocalDate.now(), OrderStatus.ORDERED);
+		Order ord1 = new Order(19002L, 102L, LocalDate.now(), OrderStatus.PROCESSED);
+		Order ord2 = new Order(19003L, 103L, LocalDate.now(), OrderStatus.DELIVERED);
+		Order ord3 = new Order(19004L, 104L, LocalDate.now(), OrderStatus.REFUNDED);
+		Order ord4 = new Order(19005L, 105L, LocalDate.now(), OrderStatus.ORDERED);
 
-		impl.saveOrUpdate(ord);
-		System.out.println("Order saved successfully");
+		/*
+		 * impl.saveOrUpdate(ord); System.out.println("Order saved successfully");
+		 */
+		List<Order> of = List.of(ord, ord1, ord2, ord3, ord4);
 
+		impl.saveAll(of);
+		System.out.println("All orders saved successfully!");
+		
+		
 		System.out.println("=".repeat(90));
 
 		Order o = impl.getOrder(19001L);
