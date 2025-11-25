@@ -21,9 +21,9 @@ public class OrderService_impl implements OrderService {
 	}
 
 	@Override
-	public Order getOrder(Long orderId) {
+	public Order getOrder(Long orderId) {// here my return type is order but 
 
-		Optional<Order> byId = ordeRepository.findById(orderId);
+		Optional<Order> byId = ordeRepository.findById(orderId);// findBy method return type is optional
 		if (byId.isPresent()) {
 			return byId.get();
 		}
