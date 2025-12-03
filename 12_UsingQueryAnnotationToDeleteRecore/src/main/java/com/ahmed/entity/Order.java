@@ -5,7 +5,7 @@ import java.time.LocalDate;
 In this case, to mark that this query method is performing modifying operation,
  we should add @Modifying annotation.
  
-JPA provider/Hibernate can execute INSERT/DELETE/UPDATE operations with in a Database transaction only. 
+JPA provider/ Hibernate can execute INSERT/DELETE/UPDATE operations with in a Database transaction only. 
 If any problems occurs then jpa will roll back the transaction without modifying the data.
 So, we should mark that method as transactional method with @Transactional annotation.
 */
