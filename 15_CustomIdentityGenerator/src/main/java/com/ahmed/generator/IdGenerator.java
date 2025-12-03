@@ -3,7 +3,21 @@ package com.ahmed.generator;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+/* •	If the pre-defined id generators of JPA are not suitable for your 
+ * application’s requirement then you can create a custom ID Generator and
+ *  you can use it to generate the primary key values for the entity class objects.
+   
+ 
+•	The below are the steps to use a Custom ID Generator in application.
 
+1. Create a class by implementing IdentifierGenerator interface, define the custom logic.
+2. Use @GenericGenerator to integrate it with JPA.
+3. Use @GeneratedValue, to add this custom strategy to the primary key.
+
+EX:
+The IdGenerator creates a 4-digit random number by generating four random digits (0–9),
+ concatenating them into a string, converting that string into a Long, and returning it as the ID.
+*/
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 

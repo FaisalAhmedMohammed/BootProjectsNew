@@ -19,7 +19,7 @@ public class Customer {
 	@Id
 	@Column(name = "CUSTOMERID")
 	@GenericGenerator(name = "customer-generator", strategy = "com.ahmed.generator.IdGenerator")
-	@GeneratedValue(generator = "customer-generator")
+	@GeneratedValue(generator = "customer-generator")//attaching generator to primary key         
 	private Long id;
 
 	@Column(name = "CUSTOMERNAME")
