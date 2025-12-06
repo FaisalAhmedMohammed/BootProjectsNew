@@ -31,7 +31,13 @@ import lombok.NoArgsConstructor;
 public class Customer {
 
 	@Id
-	@TableGenerator(name = "gen", table = "id_generator", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "cus_id", allocationSize = 1)
+	@TableGenerator(name = "gen",
+					table = "id_generator",
+					pkColumnName = "gen_name",
+					valueColumnName = "gen_value", 
+					pkColumnValue = "cus_id",
+					allocationSize = 1)
+	
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "gen")
 	@Column(name = "CUSTOMER_ID")
 	private Long customerId;
