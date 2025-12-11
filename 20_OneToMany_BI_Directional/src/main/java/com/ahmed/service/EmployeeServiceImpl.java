@@ -22,13 +22,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Address addEmployee(Employee employee, Address address) {
-		address.setEmployee(employee);
+		address.setEmployee(employee);// setting employee(parent) address
 		return address;
 	}
 
 	@Override
 	public Employee addAddress(Employee employee, List<Address> address) {
-		employee.setAddresses(address);
+		employee.setAddresses(address);// setting address(child) to employee(parent)
 		return employee;
 	}
 
