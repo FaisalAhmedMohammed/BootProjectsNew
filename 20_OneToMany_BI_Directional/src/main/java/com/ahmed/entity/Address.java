@@ -1,6 +1,5 @@
 package com.ahmed.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -48,7 +47,7 @@ public class Address {
 	@Column(name = "PINCODE")
 	private Long pincode;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "EMP_ADD")
 	Employee employee;
 

@@ -24,8 +24,16 @@ public class MyAppRunner implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		// saveEmployee();
-		 FetchEmployee(501L);
-		//deleteEmployee("SOPHIA");
+		FetchEmployee(501L);
+		// deleteEmployee("SOPHIA");
+
+		fetchAddress(1L);
+	}
+
+	private void fetchAddress(long l) {
+		Address byId = employeeService.loadById(l);
+		System.out.println(byId);
+
 	}
 
 	private void deleteEmployee(String name) {
@@ -44,9 +52,9 @@ public class MyAppRunner implements ApplicationRunner {
 		System.out.println("Employee Id :" + employee.getEmpid());
 		System.out.println("Employee Name :" + employee.getEname());
 		System.out.println("Employee Salary :" + employee.getSal());
-		
+
 		System.out.println("Fetching Child (Address) based on demand");
-		
+
 		List<Address> addresses = employee.getAddresses();
 		addresses.forEach(System.out::println);
 

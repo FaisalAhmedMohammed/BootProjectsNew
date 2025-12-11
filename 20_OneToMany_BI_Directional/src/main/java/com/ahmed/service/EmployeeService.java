@@ -18,5 +18,7 @@ public interface EmployeeService {
 	Employee loadEmployee(Long empid);
 	
 	boolean deleteEmp(String ename);
+	
+	Address loadById(Long addId);
 
 }

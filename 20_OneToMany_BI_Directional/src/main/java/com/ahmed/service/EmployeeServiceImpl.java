@@ -59,4 +59,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return count > 0;
 	}
 
+	@Override
+	public Address loadById(Long addId) {
+
+		Optional<Address> byId = addressRepo.findById(addId);
+		if (byId.isPresent()) {
+			Address address = byId.get();
+			return address;
+		}
+		return null;
+
+	}
+
 }
