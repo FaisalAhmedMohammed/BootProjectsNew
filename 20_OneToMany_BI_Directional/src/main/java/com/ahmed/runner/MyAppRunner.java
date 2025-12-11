@@ -24,16 +24,16 @@ public class MyAppRunner implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		// saveEmployee();
-		FetchEmployee(501L);
+		//FetchEmployee(501L);
 		// deleteEmployee("SOPHIA");
-
+		
 		fetchAddress(1L);
 	}
 
 	private void fetchAddress(long l) {
 		Address byId = employeeService.loadById(l);
 		System.out.println(byId);
-
+		
 	}
 
 	private void deleteEmployee(String name) {

@@ -40,9 +40,16 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [addId=" + addId + ", city=" + city + ", state=" + state + ", type=" + type + ", pincode="
-				+ pincode + ", employee=" + employee + "]";
+	    return "Address{" +
+	            "addId=" + addId +
+	            ", city='" + city + '\'' +
+	            ", state='" + state + '\'' +
+	            ", type='" + type + '\'' +
+	            ", pincode=" + pincode +
+	            ", employeeId=" + (employee != null ? employee.getEmpid() : null) +
+	            '}';
 	}
+
 
 	@Column(name = "PINCODE")
 	private Long pincode;

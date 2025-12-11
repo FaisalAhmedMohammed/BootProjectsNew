@@ -24,15 +24,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-@EqualsAndHashCode
+
 @Table(name = "NEW_EMPLOYEE")
 public class Employee {
 
 	@Id
-	@TableGenerator(name = "Empgen",
+	@TableGenerator(name = "Empgen", 
 					table = "bi_directional", 
 					pkColumnName = "gen_name",
-					pkColumnValue = "cus_id", 
+					pkColumnValue = "cus_id",
 					valueColumnName = "gen_value", 
 					allocationSize = 1)
 
@@ -46,7 +46,17 @@ public class Employee {
 	@Column(name = "SALARY")
 	private Double sal;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
+	@Override
+	public String toString() {
+	    return "Employee{" +
+	            "empid=" + empid +
+	            ", ename='" + ename + '\'' +
+	            ", sal=" + sal +
+	            '}';
+	}
+
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "employee")
 	List<Address> addresses = new ArrayList<>();
 
 }
