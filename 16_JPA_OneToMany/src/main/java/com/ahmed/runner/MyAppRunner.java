@@ -24,9 +24,9 @@ public class MyAppRunner implements ApplicationRunner {
 	@Transactional
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		// getOrder();
+		 getOrder();
 		//loadCustomer();
-		removeCustomer();
+		//removeCustomer();
 	}
 
 	public void getOrder() {

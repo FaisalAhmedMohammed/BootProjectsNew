@@ -9,7 +9,7 @@ public interface CustomerService {
 
 	Customer addOrder(Customer customer, List<Order> order);
 
-	Customer saveCustomer(Customer customer);
+	//Customer saveCustomer(Customer customer);
 
 	Customer fetchCustomer(Long customerId);
 

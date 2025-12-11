@@ -16,16 +16,17 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepo CustomerRepo;
 
 	@Override
-	public Customer addOrder(Customer customer, List<Order> order) {
+	public Customer addOrder(Customer customer, List<Order> order) {// setting list of orders to the customer
 		customer.setOrders(order);
-		return CustomerRepo.save(customer);
+		return CustomerRepo.save(customer); // returning the customer this customer we will save in db and directly
+											// saving or we can save in below method
 	}
 
-	@Override
-	public Customer saveCustomer(Customer customer) {
-		Customer save = CustomerRepo.save(customer);
-		return save;
-	}
+	/*
+	 * @Override public Customer saveCustomer(Customer customer) { Customer save =
+	 * CustomerRepo.save(customer); // saving the customer and returns the instance
+	 * saved in db return save; }
+	 */
 
 	@Override
 	public Customer fetchCustomer(Long customerId) {
