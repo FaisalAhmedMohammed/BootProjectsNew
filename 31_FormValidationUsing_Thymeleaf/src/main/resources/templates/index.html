@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form validations</title>
+</head>
+<body>
+
+<form th:action="@{/register}" th:object="${employee}" method="post">
+    <table>
+
+        <tr>
+            <td>Employee No :</td>
+            <td>
+                <input type="text" th:field="*{empno}" />
+                <div th:if="${#fields.hasErrors('empno')}"
+                     th:errors="*{empno}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Employee Name :</td>
+            <td>
+                <input type="text" th:field="*{ename}" />
+                <div th:if="${#fields.hasErrors('ename')}"
+                     th:errors="*{ename}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Employee Salary :</td>
+            <td>
+                <input type="text" th:field="*{sal}" />
+                <div th:if="${#fields.hasErrors('sal')}"
+                     th:errors="*{sal}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Employee Dept :</td>
+            <td>
+                <input type="text" th:field="*{dept}" />
+                <div th:if="${#fields.hasErrors('dept')}"
+                     th:errors="*{dept}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>DOB :</td>
+            <td>
+                <input type="date" th:field="*{dob}" />
+                <div th:if="${#fields.hasErrors('dob')}"
+                     th:errors="*{dob}" style="color:red"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="SUBMIT" />
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>
