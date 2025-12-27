@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Users</title>
+</head>
+
+<body>
+
+	<table border="2">
+		<thead>
+			<tr>
+				<th>EmpNo</th>
+				<th>Name</th>
+				<th>Salary</th>
+				<th>Department</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="emp : ${employees}">
+				<td th:text="${emp.empno}">EmpNo</td>
+				<!-- this  is called the template variable thyeleaf  engine will process this varible in to value-->
+				<td th:text="${emp.ename}">Name</td>
+				<td th:text="${emp.sal}">Salary</td>
+				<td th:text="${emp.dept}">Department</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Pagination controls MUST be outside table -->
+	<div style="margin-top: 10px;">
+
+		<span th:if="${hasPrevious}"> <a
+			th:href="@{'/views'(page=${currentPage-1})}">Previous</a> <!-- here if returns true if it has previous element then hit the 
+			same view page using hyper link but page no should be different
+			what is the current page is there then current page -1 should be displayed -->
+
+		</span> &nbsp; | &nbsp; <span th:if="${hasNext}"> <a
+			th:href="@{'/views'(page=${currentPage+1})}">Next</a>
+		</span>
+
+	</div>
+
+</body>
+</html>
