@@ -67,7 +67,7 @@ public class EmployeeController {
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<String> removeEmployee(@RequestBody @PathVariable("id") Long empno) {
+	public ResponseEntity<String> removeEmployee(@PathVariable("id") Long empno) {
 		Boolean flag = service.deleteById(empno); // if the employee deleted then it flag return true
 		if (flag == true) {
 			return new ResponseEntity<String>("Employee deleted!!", HttpStatus.OK);
@@ -78,10 +78,11 @@ public class EmployeeController {
 	}
 
 	@PatchMapping(value = "/update/{id}")
-	public ResponseEntity<Employee> partialUpdate(@RequestBody @PathVariable("id") Long empno, Map<String, Object> fieldmap) {
+	public ResponseEntity<Employee> partialUpdate(@PathVariable("id") Long empno,
+			@RequestBody Map<String, Object> fields) {
 
-		Employee updateEmployeeById = service.updateEmployeeById(empno, fieldmap);
-		if (updateEmployeeById == null) {  // checking whether the employee == null or not
+		Employee updateEmployeeById = service.updateEmployeeById(empno, fields);
+		if (updateEmployeeById == null) { // checking whether the employee == null or not
 			return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
 		} else {
 			return new ResponseEntity<Employee>(updateEmployeeById, HttpStatus.OK);
