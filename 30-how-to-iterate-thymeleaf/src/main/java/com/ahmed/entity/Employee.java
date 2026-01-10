@@ -12,6 +12,7 @@ package com.ahmed.entity;
                PageRequest (class)
                     |
         PageRequest.of(pageNo, pageSize)
+        
 Pagination is used to split large results into smaller chunks (pages), improving performance and usability.
 Spring Data JPA makes pagination very easy using the PagingAndSortingRepository or simply JpaRepository.
 In Spring Data JPA, Pageable and Page are two key interfaces that support pagination.
