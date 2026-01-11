@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ahmed.entity.Employee;
+import com.ahmed.exceptions.EmployeeAlreadyExistException;
+import com.ahmed.exceptions.EmployeeNotFoundException;
 import com.ahmed.service.EmployeeService;
 
 @RestController(value = "employeeController")
@@ -31,7 +33,7 @@ public class EmployeeController {
 			return new ResponseEntity<Employee>(employee, HttpStatus.OK);// means successful request and response send
 																			// to client successfully
 		} else {
-			return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+			throw new EmployeeNotFoundException("Employee with id : " + id + " does not exist in DataBase");
 		}
 	}
 
@@ -45,11 +47,13 @@ public class EmployeeController {
 		}
 	}
 
-	@PostMapping(value = "/add")
+	@PostMapping(value = "/add", consumes = {"application/json" }, produces = { 
+			"application/json" })
+
 	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee emp) {
 		Employee employee = service.saveEmployee(emp);
 		if (employee == null) { // if employee already exist then duplicate error nothing but conflict
-			return new ResponseEntity<Employee>(HttpStatus.CONFLICT);
+			throw new EmployeeAlreadyExistException("Employee with the id : "+ emp.getEmpno() + "  Already Exist");
 		} else {
 			return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
 		}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User List</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<h1>
+	<a href="/">add Users</a>
+	
+</h1>
+<body class="container mt-4">
+
+	<p th:text="${deleted}"></p>
+	<p th:text="${notdeleted}"></p>
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phno</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="user : ${users}">
+				<!-- this users is the key get the user and store in user -->
+				<td th:text="${user.id}"></td>
+				<!-- printing data -->
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.email}"></td>
+				<td th:text="${user.phno}"></td>
+
+				<td>
+    <a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm">
+        Edit
+    </a>
+
+    <a th:href="@{/delete/{id}(id=${user.id})}"
+       class="btn btn-danger btn-sm"
+       >
+        Delete
+    </a>
+</td>
+				
+			</tr>
+		</tbody>
+
+	</table>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+		
+	</script>
+
+</body>
+</html>

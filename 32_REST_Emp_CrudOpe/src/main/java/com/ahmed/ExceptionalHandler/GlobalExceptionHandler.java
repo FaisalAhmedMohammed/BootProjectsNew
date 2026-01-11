@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(EmployeeNotFoundException.class)
 	public ResponseEntity<String> employeeNotFound(EmployeeNotFoundException ex) {
 
-		return new ResponseEntity<String>("Error : " + ex.getMessage(), HttpStatus.OK);
+		return new ResponseEntity<String>("Error : " + ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(EmployeeAlreadyExistException.class)

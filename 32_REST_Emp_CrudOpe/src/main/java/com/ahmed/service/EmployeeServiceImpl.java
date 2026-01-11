@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee fetchEmployeeById(Long empno) { // fetching employee based on the id
 
-		Optional<Employee> byId = repository.findById(empno);
+		Optional<Employee> byId = repository.findById(empno);// it return the entity with the given id
 
 		if (byId.isPresent()) {
 			return byId.get();
@@ -37,7 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee saveEmployee(Employee emp) {
-		if (repository.existsById(emp.getEmpno())) {
+		if (repository.existsById(emp.getEmpno())) { // here first checking weather the employee with the id is present
+														// if present then returns null, if not then save the employee
 			return null;
 		}
 		return repository.save(emp);
@@ -46,7 +47,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee updateEmployee(Employee employee) {
 
-		if (repository.existsById(employee.getEmpno())) {
+		if (repository.existsById(employee.getEmpno())) { // here retrieving the employee based on the id, if present
+															// then update, other wise return null.
 			return repository.save(employee);
 		} else {
 			return null;

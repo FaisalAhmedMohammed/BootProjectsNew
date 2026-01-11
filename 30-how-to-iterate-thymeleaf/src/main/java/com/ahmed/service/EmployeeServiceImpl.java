@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Page<Employee> FetchAllEmp(int page, int size) {
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.by("sal").descending());
-		return empRepository.findAll(pageRequest); // this findAll methd returns page object it contains how many
+		return empRepository.findAll(pageRequest); // this findAll method returns page object it contains how many
 													// records,current page, it has previous page or not or it has a
 													// next page or not, totally how many pages are there
 	}
