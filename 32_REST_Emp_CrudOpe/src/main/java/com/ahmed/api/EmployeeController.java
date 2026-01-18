@@ -20,14 +20,28 @@ import com.ahmed.exceptions.EmployeeAlreadyExistException;
 import com.ahmed.exceptions.EmployeeNotFoundException;
 import com.ahmed.service.EmployeeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController(value = "employeeController")
+@Tag(name = "Employee" , description = "Employee Rest API End points")
 public class EmployeeController {
 
 	@Autowired
 	EmployeeService service;
 
 	@GetMapping(value = "/employee/{id}")
-	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+	
+	@Operation(summary = "Get Employee by Id", description = "Fetch Employee With the given id")
+	
+	@ApiResponse(responseCode = "200" , description = "Employee sucessfully Fetched")
+	
+	@ApiResponse(responseCode = "404" , description = "Employee with the given id is NOT FOUND")
+	
+	public ResponseEntity<Employee> getEmployeeById(@Parameter(description = "Id of the Employee to fetch") @PathVariable Long id) {
+		
 		Employee employee = service.fetchEmployeeById(id);
 		if (employee != null) {
 			return new ResponseEntity<Employee>(employee, HttpStatus.OK);// means successful request and response send
@@ -49,6 +63,12 @@ public class EmployeeController {
 
 	@PostMapping(value = "/add", consumes = {"application/json" }, produces = { 
 			"application/json" })
+	
+	@Operation(summary = "Add the Employee", description = "Adds a new Employee to the DB, by accepting the employe in the request body")
+	
+	@ApiResponse(responseCode = "201",description = "Employee Added Sucessfully")
+	
+	@ApiResponse(responseCode = "409",description = "Employee Alerady Exist in DB")
 
 	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee emp) {
 		Employee employee = service.saveEmployee(emp);
@@ -60,6 +80,14 @@ public class EmployeeController {
 	}
 
 	@PutMapping(value = "/update")
+	
+	@Operation(summary = "Updating the FullEmployee Data", description = "Updating the Employee in db, by accepting data in request body")
+	
+	@ApiResponse(responseCode = "200",description = "Employee has been Updated to DB")
+	
+	@ApiResponse(responseCode = "404",description = "Employee With the given Id is NOT FOUND")
+	
+
 	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee emp) {
 		Employee updateEmp = service.updateEmployee(emp);
 		if (updateEmp == null) {
