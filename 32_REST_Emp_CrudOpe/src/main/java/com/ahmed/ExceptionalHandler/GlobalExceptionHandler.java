@@ -11,8 +11,11 @@ import com.ahmed.exceptions.EmployeeNotFoundException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(EmployeeNotFoundException.class)
-	public ResponseEntity<String> employeeNotFound(EmployeeNotFoundException ex) {
+	@ExceptionHandler(EmployeeNotFoundException.class) // Spring needs to know which exception types this method should
+														// handle.
+														// .class is a Java keyword used to get the Class object of a
+														// class.
+	public ResponseEntity<String> employeeNotFound(EmployeeNotFoundException ex) {  //The thrown exception object
 
 		return new ResponseEntity<String>("Error : " + ex.getMessage(), HttpStatus.NOT_FOUND);
 	}

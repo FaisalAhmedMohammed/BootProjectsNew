@@ -61,11 +61,11 @@ public class MyAppRunner implements ApplicationRunner {
 		 * */
 		
 		// calling exchange() method
-		// this 2XX method will throw the exception at clent side like httpClentError | httpServeError to handle we have to use try and catch blocks
+		// this 2XX method will throw the exception at client side like httpClientError | httpServeError to handle we have to use try and catch blocks
 		
 		/*here we are defining the statements in try and catch block
 		 * because client application will throw the exceptions like httpClentError or httpServerError exception
-		 * so to handle it we are using blocks*/
+		 * so to handle it we are using try catch blocks*/
 		ResponseEntity<?> re;
 		try {
 			re =restTemplate.exchange(ApplicatinUtils.GET_EMP_BY_ID_URL, HttpMethod.GET, null, Employee.class, 0001);
