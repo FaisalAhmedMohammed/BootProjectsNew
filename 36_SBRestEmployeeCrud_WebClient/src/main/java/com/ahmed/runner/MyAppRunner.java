@@ -1,11 +1,8 @@
 package com.ahmed.runner;
 
-import java.sql.ResultSet;
-
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -30,16 +27,21 @@ public class MyAppRunner implements ApplicationRunner {
 		        .bodyToMono(Employee.class);  // this method will decode the body to given target type 
 		
 		monoEmployee.subscribe(employee -> System.out.println(employee));
+		
+		
+		The above code will work good if there is no exception 
+		what if the employee with the given id does not exist. then it produces string, but our pipeline returns employee mismatching type
+		so exception throws
 
 		*/
 		
 		Mono<Object> monoObj = webClient.get()
 								.uri(UriUtils.GET_EMP_BY_ID_URL,12344)
-								.exchangeToMono(response -> {
-								if(response.statusCode().is2xxSuccessful()) {
+								.exchangeToMono(response -> {   // it is alternative to response
+								if(response.statusCode().is2xxSuccessful()) { // if the employee with id exist then return to employee type
 									return response.bodyToMono(Employee.class);
 								}
-								else if (response.statusCode() == HttpStatus.NOT_FOUND) {
+								else if (response.statusCode() == HttpStatus.NOT_FOUND) { // if employee does not exist then return string,here in server application we are returning string onlye
 									return response.bodyToMono(String.class);
 									
 								}
@@ -48,6 +50,7 @@ public class MyAppRunner implements ApplicationRunner {
 								}
 								
 								});
+		
 		monoObj.subscribe(result -> {
 			System.out.println(result);
 		});
