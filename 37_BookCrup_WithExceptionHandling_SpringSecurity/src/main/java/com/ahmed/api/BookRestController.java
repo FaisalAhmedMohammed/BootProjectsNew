@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,8 @@ public class BookRestController {
 	@ApiResponse(responseCode = "200", description = "Book Fetched From DB Sucessfully")
 	
 	@ApiResponse(responseCode = "404" , description = "Employee with the given id is NOT FOUND")
+	
+	//@PreAuthorize("hasRole('ADMIN')")// It is method level authorization
 	
 	public ResponseEntity<Book> getBookById(@PathVariable @Parameter(description = "Id to be fetch from the DB") Integer id) {
 		return new ResponseEntity<Book>(service.fetchBookById(id), HttpStatus.OK);
