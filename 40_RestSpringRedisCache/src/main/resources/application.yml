@@ -20,5 +20,19 @@ spring:
     redis:
       host: localhost
       port: 6379
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app:
+    name: RestSpringRedisCache
+    description: Redis Cache Demo Application
+    version: 1.0.0
+    author: Ahmed
 server:
   port: 9095 
